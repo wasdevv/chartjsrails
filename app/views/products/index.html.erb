@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Products</h1>
+
+<%= line_chart Product.group_by_day(:created_at, range: 1.month.ago..Time.now).sum(:quantity) %>
+
+<div id="products">
+  <% @products.each do |product| %>
+    <%= render product %>
+    <p>
+      <%= link_to "Show this product", product %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New product", new_product_path %>
